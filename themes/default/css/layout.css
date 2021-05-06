@@ -1,0 +1,64 @@
+      #area_head {
+      background: black none repeat scroll 0% 0%;
+      color: white;
+      height: 78px;
+      width: 100%;
+      z-index: 9999;
+      position: fixed;
+      }
+      #area_head_center {
+      background: black none repeat scroll 0% 0%;
+      color: white;
+      height: 78px;
+      width: 1152px;
+      margin: 0 auto;
+      overflow: hidden;
+      }
+      #area_head_bottom {
+      margin: 0 auto;
+      background: white none repeat scroll 0% 0%;
+      height: 94px;
+      width: 100%;
+      }
+      #area_body {
+      margin: 0 auto;
+      width: 1152px;
+      overflow: hidden;
+      }
+      #area_left {
+      float: left;
+      margin: 0 auto;
+      width: 800px;
+      }
+      .area_space_left {
+      width: 800px;
+      height: 16px;
+      }
+      #area_recommended {
+      width: 800px;
+      overflow: hidden;
+      }
+      #area_artlist {
+		  width: 800px;
+      }
+      #area_right {
+      float: right;
+      margin: 0 auto;
+      width: 336px;
+      }
+      .area_space_right {
+      width: 336px;
+      height: 16px;
+      }
+      #area_space_foot {
+      margin: 0 auto;
+      width: 100%;
+      height: 16px;
+      }
+      #area_foot {
+      width: 100%;
+      height: 128px;
+      background-color: black;
+      color: white;
+	  text-align:center;
+      }
