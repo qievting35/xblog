@@ -275,4 +275,54 @@ function get_sys_info($itemname)
 }
 
 
+// 获取幻灯文章($top条)列表
+function get_slide_arts($top)
+{
+	// 连接数据库
+	global $g_dbhost;
+	global $g_dbname;
+	global $g_dba_username;
+	global $g_dba_password;
+
+	if ($top < 1) return false;
+	$s_top = $top;
+
+	$dbconn = new mysqli($g_dbhost,$g_dba_username,$g_dba_password);
+	if($dbconn->errno){
+		exit($dbconn->_errno);
+	}
+
+	$dbconn->query("SET NAMES 'UTF8'");
+	$dbconn->query("SET CHARACTER SET UTF8");
+	$dbconn->query("SET CHARACTER_SET_RESULTS=UTF8'");
+
+	//选择数据库
+	$dbconn->select_db($g_dbname);
+
+	//执行MySQL语句
+	
+	$s_sql = " select * from tb_article where trim(ifnull(slide, '')) <> '' order by maketime limit 0, {$s_top}; ";
+	$result=$dbconn->query($s_sql);
+	if(!$result) {
+		print($dbconn->errno);
+		return false;
+	}
+
+	$arts = array();
+	//提取数据
+	if ($result) {
+		while ( $row = $result->fetch_array()){
+			$arts[] = $row;
+		}
+		// 释放资源 
+		$result->free();
+	}
+
+	// 关闭连接 
+	$dbconn->close();
+
+	if (count($arts) < 1) return false;
+	return $arts;
+}
+
 ?>

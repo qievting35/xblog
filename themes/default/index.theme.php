@@ -48,21 +48,18 @@ $cates = get_category();
 	  <div id = "wrap_xslider">
 	    <div class="xslider">
 	      <ul class="rotaion_list">
-		<li><a href="http://sc.chinaz.com/jiaoben/">
-		    <img src="upload/1.jpg" width="600" height="338" alt="美国俄州遭遇龙卷风 已致91人死" />
-		</a></li>
-		<li><a href="http://sc.chinaz.com/jiaoben/">
-		    <img src="upload/2.jpg" width="600" height="338" alt="深圳路面塌陷形成直径10米大坑" />
-		</a></li>
-		<li><a href="http://sc.chinaz.com/jiaoben/">
-		    <img src="upload/3.jpg" width="600" height="338" alt='"520" 武汉新人扎堆结婚' />
-		</a></li>
-		<li><a href="http://sc.chinaz.com/jiaoben/">
-		    <img src="upload/4.jpg" width="600" height="338" alt="暴雨突袭广州 南沙上演科幻大片" />
-		</a></li>
-		<li><a href="http://sc.chinaz.com/jiaoben/">
-		    <img src="upload/5.jpg" width="600" height="338" alt="上海美博会模特赤身才会博眼球" />
-		</a></li>
+			<?php
+			$arts = get_slide_arts(5);
+			$s_slide = "";
+			if ($arts) {
+			foreach ($arts as $art) {
+			$s_slide .= "<li><a href=\"./article?id={$art['guid']}\">";
+		    $s_slide .= "<img src=\"{$art['slide']}\" width=\"600\" height=\"338\"";
+			$s_slide .= " alt=\"{$art['title']}\" /></a></li>";
+			print($s_slide);$s_slide = "";
+		}
+		}
+		?>
 	      </ul>
 	    </div>
 	    <script type="text/javascript" src=<?php  print("\"./themes/" . $cur_theme . "/js/slider/jquery.min.js\""); ?>></script>

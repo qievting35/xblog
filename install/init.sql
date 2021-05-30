@@ -234,6 +234,20 @@ insert into tb_label_article(guid_art,label)
 values('{7342BE66-3762-4ED5-A9E0-8A71427F2EDE}',"Hello world");
 select * from tb_label_article;
 
+
+-- 创建编辑推荐文章列表
+drop table if exists tb_editor_choice;
+create table if not exists tb_editor_choice (
+	guid_art varchar(128) not null,
+	choice_time timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+insert into tb_editor_choice(guid_art)
+select '{7342BE66-3762-4ED5-A9E0-8A71427F2EDE}' guid_art
+union all
+select '{7342BE66-3762-4ED5-A9E0-8A71427F2EDE}' guid_art;
+
+select * from tb_editor_choice;
+
 -- 创建系统信息表
 drop table if exists tb_sys_info;
 create table if not exists tb_sys_info (
