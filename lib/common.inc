@@ -325,4 +325,103 @@ function get_slide_arts($top)
 	return $arts;
 }
 
+// 获取全部文章列表
+function get_all_arts()
+{
+	// 连接数据库
+	global $g_dbhost;
+	global $g_dbname;
+	global $g_dba_username;
+	global $g_dba_password;
+
+	$dbconn = new mysqli($g_dbhost,$g_dba_username,$g_dba_password);
+	if($dbconn->errno){
+		exit($dbconn->_errno);
+	}
+
+	$dbconn->query("SET NAMES 'UTF8'");
+	$dbconn->query("SET CHARACTER SET UTF8");
+	$dbconn->query("SET CHARACTER_SET_RESULTS=UTF8'");
+
+	//选择数据库
+	$dbconn->select_db($g_dbname);
+
+	//执行MySQL语句
+	$s_sql = "";
+	$s_sql .= " select ";
+	$s_sql .= " guid,username,title,intro,content,ifnull(thumb, '') thumb,slide,id_category,maketime ";
+	$s_sql .= " from tb_article order by maketime; ";
+	$result=$dbconn->query($s_sql);
+	if(!$result) {
+		print($dbconn->errno);
+		return false;
+	}
+
+	$arts = array();
+	//提取数据
+	if ($result) {
+		while ( $row = $result->fetch_array()){
+			$arts[] = $row;
+		}
+		// 释放资源 
+		$result->free();
+	}
+
+	// 关闭连接 
+	$dbconn->close();
+
+	if (count($arts) < 1) return false;
+	return $arts;
+}
+
+
+// 获取文章的标签
+function get_labels_art($s_aid)
+{
+	// 连接数据库
+	global $g_dbhost;
+	global $g_dbname;
+	global $g_dba_username;
+	global $g_dba_password;
+
+	if (trim($s_aid) == '') return false;
+
+	$dbconn = new mysqli($g_dbhost,$g_dba_username,$g_dba_password);
+	if($dbconn->errno){
+		exit($dbconn->_errno);
+	}
+
+	$dbconn->query("SET NAMES 'UTF8'");
+	$dbconn->query("SET CHARACTER SET UTF8");
+	$dbconn->query("SET CHARACTER_SET_RESULTS=UTF8'");
+
+	//选择数据库
+	$dbconn->select_db($g_dbname);
+
+	//执行MySQL语句
+	$s_sql = "";
+	$s_sql .= " select distinct label from tb_label_article where guid_art = '{$s_aid}'; ";
+	$result=$dbconn->query($s_sql);
+	if(!$result) {
+		print($dbconn->errno);
+		return false;
+	}
+
+	$labels = array();
+	//提取数据
+	if ($result) {
+		while ( $row = $result->fetch_array()){
+			$labels[] = $row;
+		}
+		// 释放资源 
+		$result->free();
+	}
+
+	// 关闭连接 
+	$dbconn->close();
+
+	if (count($labels) < 1) return false;
+	return $labels;
+}
+
 ?>
