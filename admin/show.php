@@ -1,4 +1,11 @@
-﻿<?php
+﻿<link href="../plugins/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css" rel="stylesheet" type="text/css" />  
+<script type="text/javascript" src="../plugins/ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
+<script type="text/javascript">      
+
+    SyntaxHighlighter.all();
+
+</script>
+<?php
 
 require(dirname(__FILE__) . "/../lib/common.inc");
 
@@ -78,3 +85,4 @@ if ($err == 0) {
 print($output);
 
 ?>
+

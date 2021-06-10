@@ -3,6 +3,7 @@
   <head>
     <title>符动乾坤 - 发布新的文章</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<link href="../plugins/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" charset="utf-8" src="../plugins/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="../plugins/ueditor/ueditor.all.min.js"> </script>
     <script type="text/javascript" charset="utf-8" src="../plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
@@ -167,6 +168,11 @@
 		</form>
 	  </div>
 	</div>
-
+	<script type="text/javascript" src="../plugins/ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
+	<script type="text/javascript">      
+	$(function(){
+		SyntaxHighlighter.all();
+	});
+	</script>
   </body>
 </html>
