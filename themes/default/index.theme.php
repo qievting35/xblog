@@ -113,7 +113,7 @@ $cates = get_category();
 				$s_slide = "";
 				if ($arts) {
 					foreach ($arts as $art) {
-						$s_slide .= "<li><a href=\"./article?id={$art['guid']}\">";
+						$s_slide .= "<li><a href=\"./article.php?id={$art['guid']}\">";
 						$s_slide .= "<img src=\"{$art['slide']}\" width=\"600\" height=\"338\"";
 						$s_slide .= " alt=\"{$art['title']}\" /></a></li>";
 						print($s_slide);$s_slide = "";

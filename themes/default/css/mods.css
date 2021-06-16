@@ -62,6 +62,10 @@
 .cls_menu_item_cur:hover {
     background-color: #222222;
 }
+.cls_menu_item_cur a {
+    color: red;
+	text-decoration: solid;
+}
 
 #search_box {
     width: 200px;
@@ -474,3 +478,13 @@ DIV.bar_page SPAN.disabled {
 #flinks_title{font-weight: bold;}
 #flinks a{ text-decoration:none;}
 #flinks a:hover{ text-decoration:underline;}
+
+.art_content p
+{
+	font-variant: normal;
+	font-family: "Microsoft YaHei" ! important;
+	text-indent: 28px;
+	font-size: 14px;
+	margin-bottom: 8px;
+	line-height:200%;
+}

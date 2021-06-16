@@ -5,7 +5,9 @@ session_start();
 
 //检测是否登录，若没登录则转向登录界面
 if(!isset($_SESSION['username'])) {
+	print("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />");
 	print("您尚未登录，请先登录！");
+	header("Location:../login.php?for=admin");
 	exit();
 }
 

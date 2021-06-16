@@ -424,4 +424,52 @@ function get_labels_art($s_aid)
 	return $labels;
 }
 
+// 获取文章信息
+function get_article($s_aid)
+{
+	// 连接数据库
+	global $g_dbhost;
+	global $g_dbname;
+	global $g_dba_username;
+	global $g_dba_password;
+
+	if (trim($s_aid) == '') return false;
+
+	$dbconn = new mysqli($g_dbhost,$g_dba_username,$g_dba_password);
+	if($dbconn->errno){
+		exit($dbconn->_errno);
+	}
+
+	$dbconn->query("SET NAMES 'UTF8'");
+	$dbconn->query("SET CHARACTER SET UTF8");
+	$dbconn->query("SET CHARACTER_SET_RESULTS=UTF8'");
+
+	//选择数据库
+	$dbconn->select_db($g_dbname);
+
+	//执行MySQL语句
+	$s_sql = "";
+	$s_sql .= " select * from tb_article where guid = '{$s_aid}' limit 0,1; ";
+	$result=$dbconn->query($s_sql);
+	if(!$result) {
+		print($dbconn->errno);
+		return false;
+	}
+
+	$articles = array();
+	//提取数据
+	if ($result) {
+		while ( $row = $result->fetch_array()){
+			$articles[] = $row;break;
+		}
+		// 释放资源 
+		$result->free();
+	}
+
+	// 关闭连接 
+	$dbconn->close();
+	if (count($articles) < 1) return false;
+	return $articles[0];
+}
+
 ?>
